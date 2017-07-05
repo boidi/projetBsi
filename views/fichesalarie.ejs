@@ -1,0 +1,112 @@
+<!doctype html>
+<body lang="en">
+<% include templates/header.ejs %>
+<body>
+
+<% include templates/navbar.ejs %>
+</body>
+<div class="container" style="margin-top: 50px">
+    <section>
+        <form class="form-horizontal" method="POST" action="/newsalarie">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend style="margin-left: 300px;margin-bottom: 30px">creation d'une fiche salariée</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                <label class="col-md-4 control-label" for="prenom">Nom</label>
+                 <div class="col-md-4">
+                    <input id="nom" name="nom" type="text" placeholder="nom" class="form-control input-md" required="">
+
+                 </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="prenom">Prénom</label>
+                    <div class="col-md-4">
+                        <input id="prenom" name="prenom" type="text" placeholder="prenom" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                <label class="col-md-4 control-label" for="prenom">Civilité</label>
+                <div class="col-md-4">
+                    <input id="civilite" name="civilite" type="text" placeholder="civilite" class="form-control input-md" required="">
+
+                </div>
+              </div>
+                <div class="form-group">
+                <label class="col-md-4 control-label" for="poste">Poste occupé</label>
+                <div class="col-md-4">
+                    <input id="poste" name="poste" type="text" placeholder="poste" class="form-control input-md" required="">
+                </div>
+               </div>
+                <div class="form-group">
+                <label class="col-md-4 control-label" for="nbreEnf">Nombre d'enfants mineurs</label>
+                <div class="col-md-4">
+                    <input id="nbreEnf" name="nbreEnf" type="number" placeholder="nombre enf" class="form-control input-md" required="">
+                </div>
+               </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="naisdate">Date de naissance</label>
+                    <div class="col-md-4">
+                        <input id="naisdate" name="naisdate" type="date" placeholder="date nais" class="form-control input-md" required="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="email">Email</label>
+                    <div class="col-md-4">
+                        <input id="email" name="email" type="email" placeholder="Email" class="form-control input-md" required="">
+                    </div>
+                </div>
+                <!-- Password input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="motDePass">Mot de passe</label>
+                    <div class="col-md-4">
+                        <input id="motDePass" name="motDePass" type="password" placeholder="Password " class="form-control input-md" required="">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="login">Login</label>
+                    <div class="col-md-4">
+                        <input id="login" name="login" type="text" placeholder="login" class="form-control input-md" required="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="adresse">Adresse</label>
+                    <div class="col-md-4">
+                        <input id="adresse" name="adresse" type="text" placeholder="adresse" class="form-control input-md" required="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="poste">code postal</label>
+                    <div class="col-md-4">
+                        <input id="codeposte" name="codeposte" type="number" placeholder="code postal" class="form-control input-md" required="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="poste">est admin</label>
+                    <div class="col-md-4">
+                        <input id="isadmin" name="isadmin" type="number" placeholder="admin? 0=non;1=oui" class="form-control input-md" required="">
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for=""></label>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+    </section>
+</div>
+</body>
+<% include templates/footer.ejs %>
+</html>

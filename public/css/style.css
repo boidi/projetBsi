@@ -1,0 +1,63 @@
+@media (min-width: 768px) {
+    .sidebar-nav .navbar .navbar-collapse {
+        padding: 0;
+        max-height: none;
+    }
+    .sidebar-nav .navbar ul {
+        float: none;
+    }
+    .sidebar-nav .navbar ul:not {
+        display: block;
+    }
+    .sidebar-nav .navbar li {
+        float: none;
+        display: block;
+    }
+    .sidebar-nav .navbar li a {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    .navbar-inverse {
+        background: #81DAF5;
+
+    }
+    .navbar-inverse .navbar-brand{
+        color: black;
+    }
+    /*change la couleur des li*/
+    .navbar-inverse .navbar-nav>li>a{
+        color: black;
+    }
+
+    .menu{
+        width: 20%;
+        padding: 20px;
+        height: 700px;
+        background: mediumblue;
+        margin-top: 20px;
+    }
+    .navbar-brand{
+        padding-left: 350px;
+    }
+    .connection{
+        margin-top: 100px 0 0 50px;
+        padding-bottom:50 ;
+    }
+    footer {
+        /*position: absolute;*/
+        bottom: 0;
+        width: 100%;
+        height: 60px;
+        background-color:blueviolet;
+
+    }
+    .footer p {
+        color: beige;
+        margin-top: 15px;
+        font-size: 20px;
+    }
+  legend{margin:50px 0 0 50px;border:none  }
+  .connection fieldset{margin: 0px 20px 0 20px;}
+  .connection .form-horizontal{margin-left: 50px;margin-top:100px ;background: powderblue;}
+  .btn-primary{background: ghostwhite;width: 100px; color: black;font-size: medium}
+}

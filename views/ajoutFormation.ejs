@@ -1,0 +1,50 @@
+<!doctype html>
+<body lang="en">
+<% include templates/header.ejs %>
+<body>
+
+<% include templates/navbar.ejs %>
+
+<div class="container">
+    <section>
+        <form class="form-horizontal" method="POST" action="/utilisateurs">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Inscription</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="prenom">Prénom</label>
+                    <div class="col-md-4">
+                        <input id="prenom" name="prenom" type="text" placeholder="prenom" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Password input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="motDePass">Mot de passe</label>
+                    <div class="col-md-4">
+                        <input id="motDePass" name="motDePass" type="password" placeholder="Password " class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for=""></label>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+    </section>
+</div>
+<% include squelette/footer.ejs %>
+
+</body>
+</html>
