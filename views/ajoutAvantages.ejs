@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<% include templates/header.ejs %>
+<body>
+
+<% include templates/navbar.ejs %>
+
+<div class="container">
+    <section class="variables">
+        <form class=" col-sm-8 form-horizontal " style="margin-top: 60px" method="POST"
+              action="/avantages">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend style="margin-left: 200px;margin-bottom: 20px">Ajouter les avantages </legend>
+
+                <!--reference employé-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="prenom">Ref fiche salarié</label>
+                    <div class="col-md-4">
+                        <select id="salarie" name="idsalarie" style="width: 201px;height: 34px;background: white" class="form-control input-md" required=""><br>
+                            <!-- liste deroulante basée sur la requete sql affiche la liste                         des employés de la table salarié-->
+                            <% if (employes.length >0 )  { %>
+                            <% employes.forEach(function (employe)  { %>
+                            <option value="<%=employe.id%>">
+
+                                <div class="col-md-6 ident">
+                                    <%= employe.id %>
+                                    <div class="col-md-1 nom">
+                                        <%= employe.prenom %>
+                                    </div>
+                                    <div class=" col-md-2 prenom">
+                                        <%=employe.nom %>
+                                    </div>
+                                </div>
+                                <% }) %>
+                                <% }else { %>
+
+                                <p> la liste est vide</p>
+
+
+                                <% } %>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- libelle-->
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="libelle">Libelle de l'avantage</label>
+                    <div class="col-md-4">
+                        <select id="libelle" name="libelle" type="text" placeholder="libelle avantage" class="form-control input-md" required="">
+                            <option value=" vacances">chèque vacances</option>
+                            <option value=" dejeuner">chèque déjeuner</option>
+                            <option value=" santé">complementaire santé</option>
+                            <option value=" transport">carte de transport</option>
+                            <option value=" forfait">forfait telephone</option>
+                            <option value=" cesu">cesu</option>
+                        </select>
+                    </div>
+                </div>
+                <!--valeur-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="montant">
+                        valeur de l'avantages</label>
+                    <div class="col-md-4">
+                        <input id="montant" name="montant" type="number"
+                               placeholder="Valeur de l'avantage " class="form-control                           input-md" required="">
+
+                    </div>
+                </div>
+
+
+                <!--details-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="detail">
+                        Details sur l'avantage</label>
+                    <div class="col-md-4">
+                        <input id="detail" name="commentaire" type="text"                                      placeholder="details de l'avantage " class="form-control input-md" >
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="date">Année </label>
+                    <div class="col-md-4">
+                        <input class="form-control" id="date" name="annee"                                  placeholder="MM/DD/YYY" type="number"/>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for=""></label>
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+
+                    <!-- pour vider les input-->
+
+                    <!--<div class="form-group">-->
+                    <label class="col-md-1 control-label" for=""></label>
+                    <div class="col-md-1">
+                        <button type="reset" class="btn btn-primary">Annuler</button>
+                    </div>
+                </div>
+
+
+            </fieldset>
+            <hr>
+
+            <% include templates/retour.ejs%>
+        </form>
+
+    </section>
+
+
+</div>
+
+<% include templates/footer.ejs %>
+</body>
+</html>

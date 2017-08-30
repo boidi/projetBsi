@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<% include templates/header.ejs %>
+<body>
+
+<% include templates/navbar.ejs %>
+<div class ="container">
+  <section class="col-sm-8 modif">
+    <!--<div class="jumbotron">-->
+            <p style="margin-top: 80px">modifier une fiche salariée </p>
+       <!-- </div>-->
+        <% result.forEach(function(item){ %>
+
+
+        <form class="col-sm-8 " role="form" action="/salarie/<%= item.id %>" method="post">
+            <input type="hidden" name="_method" value="put"/>
+            <div class="form-group">
+                <label for="fname">Nom:</label>
+                <input type="text" class="form-control" id="nname" name="lenom" value="<%= item.nom%>" required>
+            </div>
+
+                <label for="nposte">Poste:</label>
+                <div class="form-group">
+                <input type="text" class="form-control" id="nposte" name="leposte" value="<%= item.poste %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nbreE">nbreEnf:</label>
+                <input type="number" class="form-control" id="nbreE" name="nbreE" value="<%= item.nbre_enf_min%>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">email</label>
+                <input type="email"  id="email" name="nemail" value="<%= item.email%>">
+            </div>
+            <!--mdp  , login ,adresse  , codePoste-->
+
+            <div class="form-group">
+                <label for="mdp">motdepass:</label>
+                <input type="password" class="form-control" id="motdepass" name="modpass" value="<%= item.mdp %>">
+            </div>
+            <div class="form-group">
+                <label for="login">login:</label>
+                <input type="text" class="form-control" id="login" name="nlogin" value="<%= item.login %>">
+            </div>
+            <div class="form-group">
+                <label for="adresse">Adresse:</label>
+                <input type="text" class="form-control" id="adresse" name="nadresse" value="<%= item.adresse %>">
+            </div>
+            <div class="form-group">
+                <label for="codepost">Code postal:</label>
+                <input type="number" class="form-control" id="codepost" name="codepost" value="<%= item.codePoste %>">
+            </div>
+
+
+            <button  type="submit" class="col-md-3 btn btn-primary">Enregistrer</button>
+
+
+
+                <button type="reset" class="col-md-offset-2 col-sm-2 btn btn-primary">Annuler</button>
+
+
+        </form>
+        <%}) %>
+</section>
+    <div class="col-sm-offset-2 col-sm-2"style="margin-top: 20px">
+    <% include templates/retour.ejs%>
+    </div>
+</div>
+
+
+
+
+</body>
+<% include templates/footer.ejs %>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<body lang="en">
+<% include templates/header.ejs %>
+
+<body>
+<div>
+
+    <div class="row">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <div class="col-offset-3">
+                        <a class="navbar-brand" href="/">
+                            <span id="logo"  class="glyphicon glyphicon-tint"></span>
+                             BSI Citizen Can
+                        </a>
+                    </div>
+                </div>
+                <!--<ul class="nav navbar-nav pull-right">
+
+                    <li><a href="/listeEmployes">tableau des adresse</a></li>
+                </ul>-->
+            </div>
+        </nav>
+    </div>
+    <!--menu-->
+    <div class="row">
+        <div class="col-sm-3 menu">
+            <div class="sidebar-nav">
+                <!--<div class="navbar navbar-default" role="navigation">-->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <span class="visible-xs navbar-brand">Sidebar menu</span>
+                    </div>
+                  <!--  <div class="navbar-collapse collapse sidebar-navbar-collapse">-->
+                        <!--<ul class="nav navbar-nav">
+                            &lt;!&ndash; <li class="active"><a href="#">sommaire</a></li>&ndash;&gt;
+
+                            <li><a href="#" ></a></li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> </a>
+                               --> <!--<ul class="dropdown-menu">
+
+                                    <li><a href="/enregistrement"></a></li>
+                                    <li><a href="/formations"></a></li>
+                                    <li><a href="/fichesalaire"></a></li>
+                                    <li><a href="/ficheavantages"> </a></li>
+                                    <li><a href="#"> </a></li>
+
+                                </ul>-->
+                           <!-- </li>
+                        </ul>-->
+                    <!--</div>&lt;!&ndash;/.nav-collapse&ndash;&gt;-->
+               <!-- </div>-->
+            </div>
+        </div>
+    <div class="container" style=" background-image: url('bureau.jpg'); background-repeat: no-repeat;background-size: 100%">
+
+        <div class ="col-sm-6 connection " >
+            <div class=" col-sm 2 flash" style="">
+                <% if(locals.flash && locals.flash.error){ %>
+                <div class="negative">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true" style="color: darkred;"></span>
+                    <%= flash.error %>
+                </div>
+                <% } %>
+                <% if(locals.flash && locals.flash.success){ %>
+                <div class="positive">
+                    <%= flash.success %>
+                </div>
+                <% } %>
+            </div>
+
+            <form class="form-horizontal"  style="margin-top: 50px;  align-content: center; box-shadow: 10px 10px 5px #888888;" method="post" action="connexion">
+                <legend>Veuillez-vous identifier</legend>
+                <fieldset>
+                    <div class="form-group">
+                        <label class ="col-md-4" for="login"> votre login</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control input-md" id="login" name="login" placeholder="votre login" required="" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class ="col-md-4" for="motdepass">mot de pass</label>
+                        <div class="col-md-4">
+                            <input type="password" class="form-control input-md" id="motdepass" name="motdepass" placeholder=" votre mot de pass"  required="">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary">Valider</button>
+                    </div>
+                </fieldset>
+            </form>
+
+
+        </div>
+
+    </div>
+</body>
+<% include templates/footer.ejs %>
+</html>

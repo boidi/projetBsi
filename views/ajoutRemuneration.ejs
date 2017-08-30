@@ -1,0 +1,148 @@
+<!doctype html>
+<body lang="en">
+<% include templates/header.ejs %>
+<body>
+
+<% include templates/navbar.ejs %>
+
+<!--<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Accueil BSI</title>
+    &lt;!&ndash;  jQuery &ndash;&gt;
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+     Bootstrap Date-Picker Plugin
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    &lt;!&ndash; — Chargement de Style.css depuis fichiersStatiques  &ndash;&gt;
+    <link rel="stylesheet" href="/public/css/style.css">
+
+    $(document).ready(function(){
+        var date_input=$('input[name="date"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        var options={
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        };
+        date_input.datepicker(options);
+    });
+
+</head>-->
+
+
+<div class="container">
+    <section class="salaire">
+        <form class="col-sm-offset-1 col-sm-6 form-horizontal " style="margin-top: 60px" method="POST" action="/remunerations">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend class="col-sm-offset-1" style="margin-left: 100px;margin-bottom: 20px">Infomations salariales </legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="prenom">Ref fiche salarié</label>
+                    <div class="col-md-4">
+                        <select id="salarie" name="idsalarie" style="width: 201px;height: 34px;background: white" class="form-control                              input-md" required=""><br>
+                            <% if (employes.length >0 )  { %>
+                            <% employes.forEach(function (employe)  { %>
+                            <option value="<%=employe.id%>">
+
+                                <div class="col-md-6 ident">
+                                    <%= employe.id %>
+                                    <div class="col-md-1 nom">
+                                        <%= employe.prenom %>
+                                    </div>
+                                    <div class=" col-md-2 prenom">
+                                        <%=employe.nom %>
+                                    </div>
+                                </div>
+                                <% }) %>
+                                <% }else { %>
+                                <p> la liste est vide</p>
+                                <% } %>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="saltype ">Type de salaire</label>
+                    <div class="col-md-4">
+                        <select id="type" name="type" style="width: 213px;height: 34px;background: white" class="form-control input-md"  required="">
+                            <option value="fixe">salaire fixe </option>
+                            <option value="variable">salaire variable </option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <!--date-->
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="montant">Montant du salaire</label>
+                    <div class="col-md-4">
+                        <input id="type" name="montant" type="number" placeholder="montant du salaire " class="form-control input-md" required="">
+
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="detail">Details </label>
+                    <div class="col-md-4">
+                        <input id="detail" name="detail" type="text" placeholder="details de l'avantage " class="form-control input-md" >
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="date">Année de laremuneration</label>
+                    <div class="col-md-4">
+                        <input class="form-control" id="date" name="annee" placeholder="MM/DD/YYY" type="number"/>
+                    </div>
+                </div>
+
+
+
+                <!-- Button -->
+                <div class="form-group">
+
+
+                    <label class="col-sm-4 control-label" for=""></label>
+
+                    <div class="col-sm-1">
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+
+                    <!-- pour vider les input-->
+
+                    <label class="col-sm-1 control-label" for=""></label>
+                    <div class="col-sm-offset-1 col-sm-1">
+                        <button type="reset" class="col-sm-offset-1 btn btn-primary">Annuler</button>
+                    </div>
+
+                </div>
+
+
+            </fieldset>
+            <hr>
+            <% include templates/retour.ejs%>
+
+        </form>
+
+    </section>
+
+</div>
+
+<% include templates/footer.ejs %>
+</body>
+</html>

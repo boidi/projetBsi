@@ -18,37 +18,39 @@
         padding-bottom: 12px;
     }
     .navbar-inverse {
-        background: #81DAF5;
+        background: #2c333b;
 
     }
     .navbar-inverse .navbar-brand{
-        color: black;
+        color: white;
     }
     /*change la couleur des li*/
     .navbar-inverse .navbar-nav>li>a{
-        color: black;
+        color: white;
     }
 
     .menu{
         width: 20%;
         padding: 20px;
-        height: 700px;
-        background: mediumblue;
+        height: 850px;
+        background: darkseagreen;
         margin-top: 20px;
     }
     .navbar-brand{
         padding-left: 350px;
     }
+    /*pour le formmulaire de l'accueil*/
     .connection{
-        margin-top: 100px 0 0 50px;
+        margin-top: 70px 0 0 50px;
         padding-bottom:50 ;
+
     }
     footer {
         /*position: absolute;*/
         bottom: 0;
         width: 100%;
-        height: 60px;
-        background-color:blueviolet;
+        height: 50px;
+        background:#2c333b;
 
     }
     .footer p {
@@ -56,8 +58,89 @@
         margin-top: 15px;
         font-size: 20px;
     }
-  legend{margin:50px 0 0 50px;border:none  }
-  .connection fieldset{margin: 0px 20px 0 20px;}
-  .connection .form-horizontal{margin-left: 50px;margin-top:100px ;background: powderblue;}
-  .btn-primary{background: ghostwhite;width: 100px; color: black;font-size: medium}
-}
+    .salaire .form-horizontal, .variables .form-horizontal,
+    .formation .form-horizontal, .employe .form-horizontal{
+        border: 2px solid burlywood;
+        background: ghostwhite;box-shadow: 10px 10px 5px #888888}
+
+
+    .form-group .control-label{
+        text-align: left;
+    }
+
+  legend{
+      margin:50px 0 0 210px;
+      border:none  }
+
+  .connection legend{
+      color: whitesmoke;
+      font-size: 20px;
+      margin-top: 25px;
+      padding-top: 15px;
+
+  }
+  .connection fieldset{
+      margin: 15px 20px 0 60px;
+      padding-bottom: 15px;
+      font-size: 16px
+  }
+  .connection .form-horizontal{
+      margin-left: 60px;
+      margin-top:50px ;
+      background: #00004d ;
+      color: white;height: 250px
+  }
+  .btn-primary{
+      background: ghostwhite;
+      width: 100px;
+      color: black;
+      font-size: medium;
+      border:none;
+  }
+  .liste .btn-primary,.liste .btn-danger{
+      width: 100px;
+  }
+
+  /*bouton de la page de connection*/
+  .connection .btn-primary{
+      margin-left:125px;
+      margin-top: 20px;
+      width: 160px;
+  }
+  section .form-horizontal fieldset{
+      margin-left: 15px;
+  }
+  #login, #motdepass{
+      width: 200px;
+  }
+  #date, #type{
+      width: 213px;
+  }
+  .ident{
+      margin-left: 30px;
+      font-family: Century Schoolbook L
+  }
+  .flash{
+      color: red;
+      margin-top: 100px;
+      height: 40px;
+      text-align: center;
+      font-size: 20px
+  }
+  .entete{
+        background-image: url('sud5.JPG');
+      /*dimensionne l'image sans le repeter*/
+        background-repeat: no-repeat;
+        background-size: 100%;
+         height: 100px;font-size: 30px;color:white;
+        text-align: center ;border-radius: 5px 5px 5px 5px
+  }
+  #logo{
+      color: blue;
+  }
+  .entete .annee,deux{
+      padding-top: 20px;
+      font-style: italic;
+      font-family: KacstDecorative
+  }
+  }

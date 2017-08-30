@@ -1,0 +1,184 @@
+<!doctype html>
+<body lang="en">
+<% include templates/header.ejs %>
+<body>
+
+<div>
+
+    <div class="row">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <div class="col-offset-3">
+                        <a class="navbar-brand" href="/">
+                            <span id="logo" class="glyphicon glyphicon-tint"></span>
+                            Bienvenue sur l'apllication BSI
+                        </a>
+                    </div>
+                </div>
+                <ul class="nav navbar-nav pull-right">
+
+                    <li><a href="/listeEmployes">tableau des adresse</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!--menu-->
+    <div class="row">
+        <div class="col-sm-3 menu">
+            <div class="sidebar-nav">
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <span class="visible-xs navbar-brand">Sidebar menu</span>
+                    </div>
+                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">infos</a></li>
+                            <!--affiche les informations sur le salarié connecté-->
+                            <% if (salarie.length >0 )  { %>
+                            <p class="ident"><%= salarie[0].prenom %></p>
+                            <p class="ident"><%= salarie[0].nom %></p>
+                            <p class="ident"><strong><%= salarie[0].poste %></strong></p>
+
+                            <% } %>
+                            <li><a href="/bilan" >visualiser son bilan</a></li>
+                            <li><a href="/deconnexion"> se deconnecter</a></li>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> </a>
+                                <ul class="dropdown-menu">
+
+                                    <li><a href="/enregistrement"></a></li>
+                                    <li><a href="/formations"></a></li>
+                                    <li><a href="/remunerations"></a></li>
+                                    <li><a href="/ficheavantages"> </a></li>
+
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!--/.nav-collapse-->
+                </div>
+            </div>
+        </div>
+        <!-- End navbar-->
+       <!--contenu de la page-->
+
+<div class ="container">
+    <div class="infos" style="margin-top: 100px">
+
+        <% if (salarie.length >0 )  { %>
+    <div class="col-sm-offset-3 entete" style="margin-top: 80px;background-image: url('sud5.JPG')">
+
+        <h3 class="annee">VOTRE BILAN SOCIAL</h3>
+   <!-- <h2 class="col-sm-offset-6 deux">annee</h2>-->
+
+    </div>
+    <div class="col-sm-offset-3 col-sm- titre">
+
+
+    <p class="ident" style="margin-top: 50px">Destiné <%= salarie[0].civilite %> <%= salarie[0].prenom %>  <%= salarie[0].nom %>,<br>
+    nous sommes heureux de vous adresser votre bilan</p>
+    <!--p class="ident"></p>-->
+
+    <% } %>
+
+    </div>
+        <div class="col-sm-offset-6">
+            <h3> <span class="check"><i class="fa fa-check" aria-hidden="true"></i></span> Votre rémunerations</h3>
+            <h3><span><i class="fa fa-check" aria-hidden="true"></i></span> vos avantages</h3>
+            <h3><span><i class="fa fa-check" aria-hidden="true"></i></span> vos formations et rtt associatifs</h3>
+
+        </div>
+
+
+    <!--<div class="mot">
+
+    </div>
+    <div class="salaire">
+
+    </div>
+    <div class="avantage">
+
+    </div>
+    <div class="formation">
+
+    </div>-->
+    <div class="col-sm-offset-3 formation">
+        <h2>vos formations</h2>
+        <table class='table table-bordered'style="border:2px solid black; width: 350px;margin-bottom: 20px">
+            <thead>
+            <tr style="border: 1px solid black;">
+                <th style="border: 1px solid black">Formations suivies</th>
+
+
+                <th style="border: 1px solid black">Duree formation</th>
+
+
+                <th style="border: 1px solid black">Cout formation</th>
+            </tr>
+            </thead>
+
+
+            <tbody>
+            <% if (salarie.length >0 )  { %>
+            <% salarie.forEach(function (salarie)  { %>
+            <tr>
+                <td class>  <%=salarie.intitule %></td>
+
+                <td ><%=salarie.duree%> j</td>
+                <td>  <%= salarie.cout%></td>
+            </tr>
+
+
+            <%})%>
+            <%}%>
+
+            </tbody>
+
+            <tfoot>
+
+            <% if (salarie.length >0 )  { %>
+
+            <tr>
+                <td>total</td>
+
+                <td class="info"><%= salarie[0].nbrejours %> j</td>
+                <td class="info"><%= salarie[0].totalcout %></td>
+
+
+            </tr>
+
+            <%}%>
+            </tfoot>
+
+        </table>
+    </div>
+        <div class="col-sm-offset-4" >
+            <h2 style="color: midnightblue; margin-top: 15px">vos avantages</h2>
+            <p>
+                Vous trouverez-ci dessous tous les dispositifs mis en en place par l'entreprise pour
+                faciliter votre vie professionnelle que votre vie privée:
+            </p>
+
+            <p><span><img class="img-circle" style="width: 130px;height: 100px"
+                          src="cdejeuner.png"/></span>  cheque dejeuner </p>
+
+
+            <div class="col-sm-offset-2 comments">
+
+           </div>
+        </div>
+    </div>
+
+    <!--End page-->
+    <% include templates/retour.ejs%>
+
+    </div>
+<% include templates/footer.ejs %>
+</body>
+</html>
