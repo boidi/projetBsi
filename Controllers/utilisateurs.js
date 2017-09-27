@@ -6,9 +6,9 @@ function afficheuser(req,res) {
         res.send('ERROR404' );
     }
 
-    classSalarie.findUserinfo(req.session.userLogin,function (resultat) {
+    classSalarie.findUserinfo(req.session.userLogin,function (rows) {
 
-        res.render('pageUtilisateur',{salarie:resultat});
+        res.render('pageUtilisateur',{salarie:rows});
     });
 }
 module.exports={userCtrl:afficheuser};

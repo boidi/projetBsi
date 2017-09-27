@@ -1,53 +1,19 @@
 <!doctype html>
-<body lang="en">
+<html lang="en">
 <% include templates/header.ejs %>
 <body>
 
-<% include templates/navbar.ejs %>
+<% include templates/navbaradmin.ejs %>
 
-<!--<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Accueil BSI</title>
-    &lt;!&ndash;  jQuery &ndash;&gt;
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
-     Bootstrap Date-Picker Plugin
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    &lt;!&ndash; — Chargement de Style.css depuis fichiersStatiques  &ndash;&gt;
-    <link rel="stylesheet" href="/public/css/style.css">
-
-    $(document).ready(function(){
-        var date_input=$('input[name="date"]'); //our date input has the name "date"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        var options={
-            format: 'mm/dd/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        };
-        date_input.datepicker(options);
-    });
-
-</head>-->
 
 
 <div class="container">
-    <section class="salaire">
-        <form class="col-sm-offset-1 col-sm-6 form-horizontal " style="margin-top: 60px" method="POST" action="/remunerations">
+    <section class="salaires">
+        <form class="col-sm-offset-1 col-sm-8 form-horizontal " style="margin-top: 160px ;margin-left: 50px" method="POST" action="/remunerations">
             <fieldset>
 
                 <!-- Form Name -->
-                <legend class="col-sm-offset-1" style="margin-left: 100px;margin-bottom: 20px">Infomations salariales </legend>
+                <legend class="col-sm-offset-1" style="margin-left: 0px;margin-bottom: 20px">Infomations salariales </legend>
 
                 <!-- Text input-->
                 <div class="form-group">
@@ -77,12 +43,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="saltype ">Type de salaire</label>
-                    <div class="col-md-4">
-                        <select id="type" name="type" style="width: 213px;height: 34px;background: white" class="form-control input-md"  required="">
-                            <option value="fixe">salaire fixe </option>
-                            <option value="variable">salaire variable </option>
-                        </select>
+         <label class="col-md-4 control-label" for="montant">Variables</label>
+         <div class="col-md-4">
+           <input id="type" name="variables" type="number" placeholder=
+        " salaire variables " class="form-control input-md" required="">
+
 
                     </div>
                 </div>
@@ -90,24 +55,26 @@
                 <!--date-->
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="montant">Montant du salaire</label>
-                    <div class="col-md-4">
-                        <input id="type" name="montant" type="number" placeholder="montant du salaire " class="form-control input-md" required="">
+           <label class="col-md-4 control-label" for="montant"> salaire fixe</label>
+         <div class="col-md-4">
+           <input id="type" name="fixe" type="number" placeholder=
+      "montant du salaire " class="form-control input-md" required="">
 
 
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="detail">Details </label>
-                    <div class="col-md-4">
-                        <input id="detail" name="detail" type="text" placeholder="details de l'avantage " class="form-control input-md" >
+          <div class="col-md-4">
+           <input id="detail" name="detail" type="text" placeholder=
+        "details de l'avantage " class="form-control input-md" >
 
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="date">Année de laremuneration</label>
-                    <div class="col-md-4">
-                        <input class="form-control" id="date" name="annee" placeholder="MM/DD/YYY" type="number"/>
+                    <label class="col-md-4 control-label" for="date">Année de la remuneration</label>
+          <div class="col-md-4">
+          <input class="form-control" id="date" name="annee" placeholder="YYYY" type="number"/>
                     </div>
                 </div>
 
@@ -140,8 +107,41 @@
         </form>
 
     </section>
+    <div class=" col-sm-offset-1 col-md-8 col-lg-8 col-sm-8 col-sm-8 col-xs-8 tableau formations" style="margin-top: 40px">
+        <!--<hr>-->
+        <p><strong>Listes des rémunérations ajoutées</strong></p>
+        <table class="table" style="margin-top: 40px;text-align: center">
+            <thead>
+            <tr>
+                <th> Nom  </th>
+                <th> les variables   </th>
+                <th> salaire fixe </th>
+                <th> annee </th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if (salaires.length >0 )  { %>
+            <% salaires.forEach(function (item)  { %>
+            <tr>
+                <td><%=item.nom%></td>
+                <td><%=item.variables %></td>
+                <td><%= item.fixe %></td>
+                <td><%= item.annee%></td>
 
-</div>
+            </tr>
+            <% }) %>
+            <% }else { %>
+
+            <td> la liste est vide</td>
+
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+
+
+    </div>
 
 <% include templates/footer.ejs %>
 </body>

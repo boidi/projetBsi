@@ -4,7 +4,7 @@ let modelFormation = require('../models/classFormations')
 function ajoutFormation (req,res) {
     console.log(req.body);
     if (req.body.intitule === null || req.body.datedebut === null || req.body.datefin === null ||
-        req.body.duree === null || req.body.montant === null || req.body.idsalarie === null) {
+        req.body.duree === null || req.body.montant === null ) {
         res.render('ajoutFormation');
     } else {
         //si tous les champ sont remplis on stocke les données ds des variables pr les enregistrées ds la bd
@@ -12,9 +12,9 @@ function ajoutFormation (req,res) {
         let datedebut = req.body.datedebut;
         let datefin = req.body.datefin;
         let montant = req.body.montant;
-        let idsalarie = req.body.idsalarie;
+
         //insertion
-        modelFormation.saveformation(intitule, datedebut, datefin, montant, idsalarie, function () {
+        modelFormation.saveformation(intitule, datedebut, datefin, montant, function () {
 
 
             /*redirige  à la page d'accueil de l'admin connecté*/

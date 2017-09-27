@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<% include templates/header.ejs %>
+
+<body>
+<% include templates/navbaradmin.ejs %>
+
+<div class="container">
+    <section class="formation">
+        <form class=" col-sm-8 form-horizontal " style="margin-top:
+        160px ;margin-left: 50px" method="POST"
+              action="/newtypeAvant">
+            <fieldset>
+
+                <!-- libelle -->
+                <legend style="margin-left: 0px;margin-bottom: 20px">Ajouter un nouveau type d'avantages </legend>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="montant">libellé avantages</label>
+                    <div class="col-md-4"><input id="libelle" name="libelle" type="text"                                 placeholder="libelle "class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+
+
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for=""></label>
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+
+                    <!-- pour vider les input-->
+
+                    <!--<div class="form-group">-->
+                    <label class="col-md-1 control-label" for=""></label>
+                    <div class="col-md-1">
+                        <button type="reset" class="btn btn-primary">Annuler</button>
+                    </div>
+                </div>
+
+
+            </fieldset>
+
+
+            <% include templates/retour.ejs%>
+        </form>
+    </section>
+
+
+    </div>
+
+
+<% include templates/footer.ejs %>
+
+</body>
+</html>

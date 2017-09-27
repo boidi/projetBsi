@@ -1,7 +1,7 @@
 module.exports= function (req,res,next) {
 if(req.session.flash){
     //on recupere l'erreur dans une variable locale
-    res.locals.flash = req.session.flash
+    res.locals.flash = req.session.flash;
     //supprime la session
     req.session.flash = undefined
 }

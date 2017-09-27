@@ -32,9 +32,23 @@ function verifCp(champ) {
         return true;
     }
 }
+function verifMail(champ)
+{
+    var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+    if(!regex.test(champ.value))
+    {
+        surligne(champ, true);
+        return false;
+    }
+    else
+    {
+        surligne(champ, false);
+        return true;
+    }
+}
 
 function verifSaisie(f) {
-    if(verifChamp(f.nom)&& verifChamp(f.prenom)&& verifChamp(f.poste) && verifChamp(f.motDePass) && verifChamp(f.login)&& verifChamp(f.adresse)&& verifCp(f.codeposte)){
+    if(verifChamp(f.nom)&& verifChamp(f.prenom)&& verifChamp(f.poste) && verifChamp(f.motDePass) && verifChamp(f.login)&&  verifMail(f.email)){
         alert('les données ont été bien enregistrées!');
         return true
     }else {
@@ -42,3 +56,4 @@ function verifSaisie(f) {
         return false
     }
 }
+/*verifChamp(f.adresse) verifCp(f.codeposte)&&*/

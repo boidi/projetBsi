@@ -6,9 +6,9 @@ function afficheAdmin(req,res) {
         res.send('ERROR404');
     }else {
 
-        classSalarie.findUserinfo(req.session.userLogin, function (resultat) {
-            console.log(resultat);
-            res.render('AccueilAdmin', {salarie: resultat});
+        classSalarie.findUserinfo(req.session.userLogin, function (rows) {
+            console.log(rows);
+            res.render('AccueilAdmin', {salarie: rows});
         });
     }
 }

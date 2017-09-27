@@ -1,17 +1,18 @@
 <!doctype html>
-<body lang="en">
+<html lang="en">
 <% include templates/header.ejs %>
 <body>
 
-<% include templates/navbar.ejs %>
-</body>
+<% include templates/navbaradmin.ejs %>
+
 <div class="container" >
     <section class="employe"  >
-        <form class="col-sm-offset-1 col-sm-8 form-horizontal" style="margin-top: 60px; margin-bottom: 10px" method="POST"          action="/newsalarie" onsubmit="return verifSaisie(this)">
+        <form class="col-sm-offset-1 col-sm-8 form-horizontal"
+         style="margin-top: 160px; margin-bottom: 10px ;margin-left: 50px" method="POST"   action="/newsalarie" onsubmit="return verifSaisie(this)">
             <fieldset>
 
                 <!-- Form Name -->
-                <legend style="margin-left: 240px;margin-bottom: 10px">creation d'une fiche salariée</legend>
+                <legend style="margin-left: 40px;margin-bottom: 10px">creation d'une fiche salariée</legend>
 
                 <!-- Text input-->
                 <div class="form-group">
@@ -30,7 +31,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                <label style="text-align: justify" class="col-md-4 control-label"                                            for="civilite">Civilité</label>
+                <label style="text-align: justify" class="col-md-4
+                control-label"  for="civilite">Civilité</label>
                 <div class="col-md-4">
                      <select id="civilite" name="civilite" style="width: 213px;height: 34px;background: white" class="form-control                     input-md" required="">
                         Votre civité<br>
@@ -42,67 +44,92 @@
                 <!--selected valeur-->
 
                 <div class="form-group">
-                <label style="text-align: justify" class="col-md-4 control-label" for="poste">Poste                         occupé</label>
+                <label style="text-align: justify" class="col-md-4 control-label" for="poste">
+                    Poste   occupé</label>
                 <div class="col-md-4">
-                    <input id="poste" name="poste" onblur="verifChamp()" type="text"                  placeholder="poste" class="form-control input-md" required="" >
+                    <input id="poste" name="poste" onblur="verifChamp()"
+                           type="text"   placeholder="poste" class="form-control input-md" required="" >
                 </div>
                </div>
                 <div class="form-group">
-                <label style="text-align: justify" class="col-md-4 control-label" for="nbreEnf">Nombre                     d'enfants mineurs</label>
+                <label style="text-align: justify" class="col-md-4 control-label" for="nbreEnf">
+                    Nombre  d'enfants mineurs</label>
                 <div class="col-md-4">
                     <input id="nbreEnf" name="nbreEnf" type="number"
-                    placeholder="nombre enf" class="form-control input-md" required="">
+                    placeholder="nombre enf" class="form-control input-md" >
                 </div>
                </div>
 
                 <div class="form-group">
-                    <label style="text-align: justify" class="col-md-4 control-label" for="naisdate">Date                de naissance</label>
+                    <label style="text-align: justify" class="col-md-4 control-label"
+                           for="naisdate">Date de naissance</label>
                     <div class="col-md-4">
-                        <input id="naisdate" name="naisdate" type="date" placeholder="date                  nais" class="form-control input-md" required="">
+                        <input id="naisdate" name="naisdate" type="date"
+                               placeholder="date nais"
+                               class="form-control input-md" >
                     </div>
                 </div>
                 <div class="form-group">
                     <label style="text-align: justify" class="col-md-4 control-label" for="email">Email</label>
                     <div class="col-md-4">
-                        <input id="email" name="email" type="email" placeholder="Email"                        class="form-control input-md" required="">
+                      <input id="email" name="email" type="email"
+                     placeholder="Email" onblur="verifMail()" class="form-control
+                     input-md" required="">
                     </div>
                 </div>
                 <!-- Password input-->
                 <div class="form-group">
-                    <label style="text-align: justify" class="col-md-4 control-label" for="motDePass">Mot                   de passe</label>
+                    <label style="text-align: justify" class="col-md-4 control-label"
+                           for="motDePass">Mot de passe</label>
                     <div class="col-md-4">
-                        <input id="motDePass" name="motDePass" type="password"                           placeholder="Password " onblur="verifChamp()" class="form-control input-md"                required="">
+                        <input id="motDePass" name="motDePass"
+                               type="password"   placeholder="Password "
+                               onblur="verifChamp()" class="form-control input-md" required="">
 
                     </div>
                 </div>
                 <div class="form-group">
                     <label style="text-align: justify" class="col-md-4 control-label" for="login">Login</label>
                     <div class="col-md-4">
-                        <input id="login" name="login" onblur="verifChamp()" type="text"              placeholder="login" class="form-control input-md" required="" >
+                      <input id="login" name="login"
+                             onblur="verifChamp()"
+                           type="text"  placeholder="login" class="form-control
+                input-md" required="" >
                     </div>
                 </div>
                 <div class="form-group">
-                    <label style="text-align: justify" class="col-md-4 control-label"                                     for="adresse">Adresse</label>
+                    <label style="text-align: justify" class="col-md-4
+                    control-label"  for="adresse">Adresse</label>
                     <div class="col-md-4">
-                        <input id="adresse" name="adresse" onblur="verifChamp()"type="text"                  placeholder="adresse"  class="form-control input-md" required="" >
+                        <input id="adresse" name="adresse" onblur="verifChamp()"
+                               type="text"  placeholder="adresse"  class="
+                               form-control input-md" required="" >
                     </div>
                 </div>
                 <div class="form-group">
-                    <label style="text-align: justify" class="col-md-4 control-label" for="poste">code                         postal</label>
+                    <label style="text-align: justify" class="col-md-4 control-label"
+                           for="poste">code postal</label>
                     <div class="col-md-4">
-                        <input id="codeposte" name="codeposte" type="number"                              placeholder="code postal" onblur="verifCp()"class="form-control input-md"                       required="">
+                        <input id="codeposte" name="codeposte"
+                               type="number" placeholder="code postal"
+                               onblur="verifCp()"class="form-control input-md" required="">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label style="text-align: justify" class="col-md-4 control-label" for="poste">est                          admin</label>
+                    <label style="text-align: justify" class="col-md-4 control-label"
+                           for="poste">est admin</label>
                     <div class="col-md-4">
-                        <select id="isadmin" name="isadmin" type="number" placeholder="admin? 0=non;1=oui" class="form-control input-md" required=""><option value="1">est admin</option>
+                        <select id="isadmin" name="isadmin" type="number"
+                                placeholder="admin? 0=non;1=oui" class="
+                                form-control input-md" required="">
+                            <option value="1">est admin</option>
                             <option value="0">non admin</option>
                         </select>
                     </div>
                 </div>
 
                 <!-- Button -->
+
 
                 <div class="form-group">
 
@@ -122,17 +149,21 @@
 
                 </div>
                 <hr>
+               <!-- <p>(<span class="glyphicon
+                 glyphicon-asterisk" aria-hidden="true"></span>)champ obligatoire </p>-->
                 <div col-sm-4>
                     <% include templates/retour.ejs%>
                 </div>
 
 
             </fieldset>
+
         </form>
 
 
     </section>
 </div>
-</body>
+
 <% include templates/footer.ejs %>
+</body>
 </html>

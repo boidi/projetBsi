@@ -167,5 +167,47 @@
 </div>
         </div>
         <% include templates/footer.ejs %>
+        <!-- tableau des formations salarié
+
+         <div class="row">
+    <div class="col-md-offset-1 col-md-6 tableau formation" style="margin-top: 40px">
+        <hr>
+        <p>listes des formations effectuées</p>
+        <table class="table" style="margin-top: 40px;text-align: center">
+            <thead>
+            <tr>
+                <th> Nom  </th>
+                <th> Prénom  </th>
+                <th> Intitulé formation </th>
+                <th> date debut formation </th>
+                <th> date fin formation</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if (allformation.length >0 )  { %>
+            <% allformation.forEach(function (item)  { %>
+            <tr>
+                <td><%=item.nom%></td>
+                <td><%=item.prenom %></td>
+                <td><%= item.intitule %></td>
+                <td><%= item.datedebut%></td>
+                <td><%=item.datefin %></td>
+            </tr>
+            <% }) %>
+            <% }else { %>
+
+            <td> la liste est vide</td>
+
+            <% } %>
+            </tbody>
+        </table>
+
+    </div>-->
+
+
+
+
+
 </body>
 </html>

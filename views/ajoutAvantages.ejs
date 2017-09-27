@@ -1,24 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <% include templates/header.ejs %>
-<body>
+<div>
 
-<% include templates/navbar.ejs %>
+<% include templates/navbaradmin.ejs %>
 
 <div class="container">
-    <section class="variables">
-        <form class=" col-sm-8 form-horizontal " style="margin-top: 60px" method="POST"
+    <section class="variable">
+        <form class=" col-sm-8 form-horizontal " style="margin-top:
+         60px;margin-left: 20px" method="POST"
               action="/avantages">
             <fieldset>
 
                 <!-- Form Name -->
-                <legend style="margin-left: 200px;margin-bottom: 20px">Ajouter les avantages </legend>
+                <legend style="margin-left: 20px;margin-bottom: 20px">Ajout des avantages au compte d'un salarié </legend>
 
                 <!--reference employé-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="prenom">Ref fiche salarié</label>
+                    <label class="col-md-4 control-label" for="prenom">
+                        Ref fiche salarié</label>
                     <div class="col-md-4">
-                        <select id="salarie" name="idsalarie" style="width: 201px;height: 34px;background: white" class="form-control input-md" required=""><br>
+                        <select id="salarie" name="idsalarie"
+               style="width: 201px;height: 34px;background: white" class="form-control input-md" required=""><br>
                             <!-- liste deroulante basée sur la requete sql affiche la liste                         des employés de la table salarié-->
                             <% if (employes.length >0 )  { %>
                             <% employes.forEach(function (employe)  { %>
@@ -48,26 +51,34 @@
                 <!-- libelle-->
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="libelle">Libelle de l'avantage</label>
+                    <label class="col-md-4 control-label" for="libelle">
+                Libelle de l'avantage</label>
                     <div class="col-md-4">
-                        <select id="libelle" name="libelle" type="text" placeholder="libelle avantage" class="form-control input-md" required="">
-                            <option value=" vacances">chèque vacances</option>
-                            <option value=" dejeuner">chèque déjeuner</option>
-                            <option value=" santé">complementaire santé</option>
-                            <option value=" transport">carte de transport</option>
-                            <option value=" forfait">forfait telephone</option>
-                            <option value=" cesu">cesu</option>
-                        </select>
-                    </div>
-                </div>
-                <!--valeur-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="montant">
-                        valeur de l'avantages</label>
-                    <div class="col-md-4">
-                        <input id="montant" name="montant" type="number"
-                               placeholder="Valeur de l'avantage " class="form-control                           input-md" required="">
+                    <select id="typeavant" name="idtype"
+                    placeholder="libelle avantage"
+                   class="form-control input-md" required="">
+                       <% if (typeavant.length >0 )  { %>
+                            <% typeavant.forEach(function (item)  { %>
+                            <option value="<%=item.id%>">
 
+                                <div class="col-md-6 ident">
+                                    <%= item.id %>
+                                    <div class="col-md-1 nom">
+                                        <%= item.libelle %>
+                                    </div>
+
+
+                                    </div>
+
+                                <% }) %>
+                                <% }else { %>
+
+                                <p> la liste est vide</p>
+
+
+                                <% } %>
+                            </option>
+                        </select>
                     </div>
                 </div>
 
@@ -81,10 +92,21 @@
 
                     </div>
                 </div>
+                <!--montant de l'avantages-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="montant">
+                        valeur de l'avantages</label>
+                    <div class="col-md-4">
+                        <input id="montant" name="montant" type="number" placeholder=
+                        "Valeur de l'avantage " class="form-control  input-md" required="">
+
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="date">Année </label>
                     <div class="col-md-4">
-                        <input class="form-control" id="date" name="annee"                                  placeholder="MM/DD/YYY" type="number"/>
+                        <input class="form-control" id="date" name="annee"
+                    placeholder="YYYY" type="number"/>
                     </div>
                 </div>
 
@@ -108,17 +130,21 @@
                 </div>
 
 
-            </fieldset>
+
             <hr>
 
             <% include templates/retour.ejs%>
+            </fieldset>
         </form>
 
     </section>
 
 
 </div>
+</div>
+
 
 <% include templates/footer.ejs %>
+
 </body>
 </html>

@@ -4,7 +4,7 @@
 
 let express = require('express');
 let app = express();
-let consql = require('./config/db');
+/*let consql = require('./config/db');*/
 let flash = require('express-flash');
 
 //middleware pour recuperer les données du formulaire
@@ -12,8 +12,12 @@ let flash = require('express-flash');
 let bodyParser = require('body-parser');
 let session = require('express-session');
 let methodOverride = require('method-override');
+let bcrypt =require('bcrypt');
+let saltRounds=8;
 //Routes module
+//controleur deconnexion
 let logoutctrl = require('./Controllers/deconnexion');
+//controleur connexion
 let connectRoutes = require('./Controllers/connexionCtrl');
 let ajoutsalarie = require('./Controllers/ajoutSalarie');
 let ajoutavantage = require('./Controllers/ajoutAvant');
@@ -27,6 +31,15 @@ let getAvantage = require('./Controllers/avantageCtrl');
 let listeS = require('./Controllers/listeS');
 let bilanF = require('./Controllers/bilanFormation');
 let getformation = require('./Controllers/affFormation');
+let getFormations =require('./models/classFormations');
+let classSalarie = require('./models/salarie');
+let formationSctrl = require ('./Controllers/formationS');
+let salarieF =require('./models/salarieF');
+let bilanS =require('./models/bilan');
+let typeavant =require('./Controllers/typeavantage');
+let avantages =require('./models/avantages');
+let modifS = require('./Controllers/modif');
+let classRemunerations= require('./models/remunerations');
 /*let getsalaire = require('./Controllers/affRemuneration');*/
 //app.use(flash());
 
@@ -53,9 +66,7 @@ app.use(session({
 //creation d'un middleware
 app.use(require('./config/flash'));
 //pour utiliser les fichiers statiques
-//process.cwd() affiche le chemin du fichier stactic
-/*app.use("/public", express.static(process.cwd()+ "/public"));
-console.log(process.cwd()+ "/public");*/
+
 app.use(express.static('public'));
 
 //moteur de template
@@ -79,31 +90,127 @@ app.get('/enregistrement',function(req,res){
     res.render('fichesalarie')
 });
 
-//affiche le formulaire de formation
-
-// affiche le formulaire d'ajout formation et affiche la liste des salariés
+// affiche le formulaire d'ajout de formations
 app.get('/formations',getformation.getformation);
 
 //affiche formulaire remuneration
-app.get('/remunerations',function (req,res) {
-    consql.query('SELECT id,nom,prenom FROM salarie',function (err, result, meta) {
-        if (err) throw err;
-        console.log(result);
+app.get('/remunerations',function (req,res,next) {
+    classSalarie.getsalarie(function (result) {
+        res.locals.employes = result;
+
         //console.log(meta); donne des infos sur la requete
-        res.render('ajoutRemuneration', {employes: result});
-    })
+
+    });
+    next()
+},function (req,res) {
+   classRemunerations.getallS(function (resultat) {
+      let result=res.locals.employes;
+       res.render('ajoutRemuneration', {employes: result,salaires:resultat});
+   })
+
 });
 
 //affiche la liste des employés
 app.get('/listeEmployes',listeS.afficheliste);
 
 //affiche la vue du bilan
-app.get('/bilan',bilan.bilanCtrl);
+app.get('/bilan',function (req,res,next) {
+
+    if (!req.session.admin === true) {
+
+        res.send('ERROR404');
+
+    }
+    bilanS.getbilan(req.session.userLogin, function (resultat) {
+
+
+        res.locals.bformation = resultat;
+
+    });
+    next();
+},function(req,res,next){
+    bilanS.getSalaire(req.session.userLogin,function(results){
+        res.locals.salaire =results;
+    });
+    next();
+    },function(req,res,next){
+        bilanS.getsalaireb(req.session.userLogin,function(rows){
+            res.locals.salaireb =rows;
+        });
+        next();
+},
+function(req,res) {
+    bilanS.bilanavantages(req.session.userLogin,function(result){
+
+console.log((result));
+    let resultat=res.locals.bformation;
+    let results= res.locals.salaire;
+    let rows= res.locals.salaireb;
+
+    res.render('bilanSalarie',{salarie:resultat,avantages:result,salaires:results,salaireb:rows});
+});
+});
+
+//formulaire pour ajouter d'autres type d'avantages
+app.get('/typeavant',function (req,res) {
+    res.render('typeAvantages')
+});
+//ajout type avantage
+app.post('/newtypeAvant',typeavant.typeAvant);
+
+//affiche le formulaire pour les formations/salarie
+app.get('/formationSalarie', function (req,res,next) {
+    classSalarie.getsalarie(function (result) {
+       /* console.log(result);*/
+        /*variable qui recupere le resultat de la requete  dans une variable locals
+         pour l'utilisation ds le middleware suivant*/
+        res.locals.salarie = result;
+
+    });
+    next();
+},function(req,res,next){
+    salarieF.allformationS(function (resultat) {
+        console.log(resultat);
+        res.locals.allformations = resultat;
+    });
+    next();
+},function(req,res){
+    getFormations.listeFomation(function (results) {
+        console.log(results);
+
+        let result = res.locals.salarie;
+        let resultat =res.locals.allformations;
+
+        res.render('formationSalarie', {formation: results, employes: result,allformation:resultat});
+    })
+    });
 
 app.get('/bilanFormation',bilanF.bilanformation);
 
 //affiche le formulaire avantages
-app.get('/ficheavantages',getAvantage.getAvantages);
+
+app.get('/ficheavantages',function (req,res,next) {
+    if(!req.session.admin === true){
+        res.send('ERROR404');
+    }
+    classSalarie.getsalarie(function(result)
+    {
+        res.locals.salarie =result;
+    });
+
+next();
+},function(req,res) {
+   avantages.getavantage(function(resultat){
+
+        console.log(resultat);
+        let result = res.locals.salarie;
+
+
+        res.render('ajoutAvantages', {employes: result, typeavant: resultat});
+
+});
+});
+app.post('/ficheavantages',getAvantage.getAvantages);
 
 //Controllers pour enregistrer les données des formulaires dans la base de données
 app.post('/newsalarie',ajoutsalarie.ajoutSctrl);
@@ -113,6 +220,7 @@ app.post('/newformation',formations.formationCtrl);
 
 //Controllers remunerations
 app.post('/remunerations', remunerations.remunerationCtrl);
+app.post('/formationSalarie',formationSctrl.formationSctrl);
 
 // Controllers avantages pour ajouter les avantages par salarié dans la base de données
 app.post('/avantages', ajoutavantage.ajoutAvant);
@@ -121,23 +229,18 @@ app.post('/avantages', ajoutavantage.ajoutAvant);
 app.get('/connexion', function (req, res) {
     res.render('pageConnection');
 });
-//modifier une fiche salarie
-app.get('/modifsalarie/:id', (req,res) => {
-    consql.query('SELECT * FROM salarie WHERE id = ?',[req.params.id],function (err,result) {
+//modifier une fiche salariée
+app.get('/modifsalarie/:id', function(req,res) {
+    classSalarie.finduser(req.params.id,function (result) {
         res.render('modiFiche',{result:result})
     });
 });
 //supprimer un salarie
 app.delete('/deleteSalarie/:id', (req,res) => {
+classSalarie.deleteuser(req.params.id,function(){
 
-    let reqsuppression = "DELETE FROM salarie WHERE id=?;";
-    consql.query(reqsuppression,[req.params.id], function(err, res){
-        if(err) throw err;
-
-    });
     res.redirect('/listeEmployes');
-
-
+});
 });
 //authentification de l'utilisateur
   app.post('/connexion',connectRoutes.connect);
@@ -147,5 +250,5 @@ app.get('/deconnexion',logoutctrl.getlogoutctrl);
 app.put('/salarie/:id',modifFiche.modifCtrl);
 
 
-//ecouter le serveur sur le port 8080
+//ecouter le serveur sur le port 9000
 app.listen(9000);

@@ -1,5 +1,5 @@
 <!doctype html>
-<body lang="en">
+<body lang="en" xmlns="http://www.w3.org/1999/html">
 <% include templates/header.ejs %>
 <body>
 
@@ -9,27 +9,30 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <div class="col-offset-3">
-                        <a class="navbar-brand" href="/">
-                            <span id="logo" class="glyphicon glyphicon-tint"></span>
+                    <div class="">
+                        <a class="  navbar-brand" href="/">
+                            <span id="logo" class="
+                            glyphicon glyphicon-tint"></span>
                             Bienvenue sur l'apllication BSI
                         </a>
                     </div>
                 </div>
-                <ul class="nav navbar-nav pull-right">
+                <!--<ul class="nav navbar-nav pull-right">
 
-                    <li><a href="/listeEmployes">tableau des adresse</a></li>
-                </ul>
+                    <li><a href="/admin">accueil Admin</a></li>
+                </ul>-->
+
             </div>
         </nav>
     </div>
     <!--menu-->
     <div class="row">
-        <div class="col-sm-3 menu">
+        <div class="col-md-3 col-lg-2 col-sm-3 col-xs-3 menu" style="height: 2000px">
             <div class="sidebar-nav">
                 <div class="navbar navbar-default" role="navigation">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                          data-target=".sidebar-navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -39,7 +42,7 @@
                     </div>
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">infos</a></li>
+                            <li class="active"><a href="/admin">infos</a></li>
                             <!--affiche les informations sur le salarié connecté-->
                             <% if (salarie.length >0 )  { %>
                             <p class="ident"><%= salarie[0].prenom %></p>
@@ -47,20 +50,12 @@
                             <p class="ident"><strong><%= salarie[0].poste %></strong></p>
 
                             <% } %>
-                            <li><a href="/bilan" >visualiser son bilan</a></li>
+                            <li><a href="/bilan" >Visualiser son bilan</a></li>
                             <li><a href="/deconnexion"> se deconnecter</a></li>
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> </a>
-                                <ul class="dropdown-menu">
 
-                                    <li><a href="/enregistrement"></a></li>
-                                    <li><a href="/formations"></a></li>
-                                    <li><a href="/remunerations"></a></li>
-                                    <li><a href="/ficheavantages"> </a></li>
-
-
-                                </ul>
                             </li>
                         </ul>
+
                     </div><!--/.nav-collapse-->
                 </div>
             </div>
@@ -69,48 +64,39 @@
        <!--contenu de la page-->
 
 <div class ="container">
-    <div class="infos" style="margin-top: 100px">
+    <div class="col-sm-9 col-xs-9 col-md-8 col-lg-4 infos" style="margin-top: 50px">
+
 
         <% if (salarie.length >0 )  { %>
-    <div class="col-sm-offset-3 entete" style="margin-top: 80px;background-image: url('sud5.JPG')">
+    <div class=" col-sm-offset-1   entete" style="margin-top:
+          80px;background-image: url('sud5.JPG');background-size: 100%">
 
         <h3 class="annee">VOTRE BILAN SOCIAL</h3>
    <!-- <h2 class="col-sm-offset-6 deux">annee</h2>-->
 
     </div>
-    <div class="col-sm-offset-3 col-sm- titre">
+    <div class=" col-sm-offset-1 titre">
 
 
-    <p class="ident" style="margin-top: 50px">Destiné <%= salarie[0].civilite %> <%= salarie[0].prenom %>  <%= salarie[0].nom %>,<br>
-    nous sommes heureux de vous adresser votre bilan</p>
-    <!--p class="ident"></p>-->
+    <p class="ident" style="margin-top: 50px">Destiné <%= salarie[0].civilite %> <%= salarie[0].prenom %>
+         <%= salarie[0].nom %>,<br>
+        nous sommes heureux de vous adresser votre bilan</p>
 
     <% } %>
 
     </div>
-        <div class="col-sm-offset-6">
-            <h3> <span class="check"><i class="fa fa-check" aria-hidden="true"></i></span> Votre rémunerations</h3>
-            <h3><span><i class="fa fa-check" aria-hidden="true"></i></span> vos avantages</h3>
-            <h3><span><i class="fa fa-check" aria-hidden="true"></i></span> vos formations et rtt associatifs</h3>
+        <div class="col-sm-offset-1">
+            <h3> <span class="check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                Votre rémunerations</h3>
+            <h3><span><i class="fa fa-check" aria-hidden="true"></i></span> Vos avantages</h3>
+            <h3><span><i class="fa fa-check" aria-hidden="true"></i></span> Vos formations</h3>
 
         </div>
 
 
-    <!--<div class="mot">
-
-    </div>
-    <div class="salaire">
-
-    </div>
-    <div class="avantage">
-
-    </div>
-    <div class="formation">
-
-    </div>-->
-    <div class="col-sm-offset-3 formation">
-        <h2>vos formations</h2>
-        <table class='table table-bordered'style="border:2px solid black; width: 350px;margin-bottom: 20px">
+    <div class="col-md-offset-1 col-sm-offset-1 col-xs-offset-1 formation">
+        <legend style="font-style: oblique;color: darkgreen;font-family: 'Century Schoolbook L';font-size: 28px">Vos formations</legend>
+        <table class='table 'style="border:2px solid black; margin-bottom: 20px">
             <thead>
             <tr style="border: 1px solid black;">
                 <th style="border: 1px solid black">Formations suivies</th>
@@ -128,10 +114,10 @@
             <% if (salarie.length >0 )  { %>
             <% salarie.forEach(function (salarie)  { %>
             <tr>
-                <td class>  <%=salarie.intitule %></td>
+                <td>  <%=salarie.intitule %></td>
 
-                <td ><%=salarie.duree%> j</td>
-                <td>  <%= salarie.cout%></td>
+                <td ><%=salarie.duree%> jours</td>
+                <td>  <%= salarie.cout%> euros</td>
             </tr>
 
 
@@ -141,14 +127,14 @@
             </tbody>
 
             <tfoot>
-
+<!--je recupère le resultat de la requête sans faire de boucle pour avoir un element avec l'indice [0]-->
             <% if (salarie.length >0 )  { %>
 
             <tr>
-                <td>total</td>
+                <td>Total</td>
 
-                <td class="info"><%= salarie[0].nbrejours %> j</td>
-                <td class="info"><%= salarie[0].totalcout %></td>
+                <td class="info"><%= salarie[0].nbrejours %> jours</td>
+                <td class="info"><%= salarie[0].totalcout %> euros</td>
 
 
             </tr>
@@ -158,25 +144,139 @@
 
         </table>
     </div>
-        <div class="col-sm-offset-4" >
-            <h2 style="color: midnightblue; margin-top: 15px">vos avantages</h2>
-            <p>
-                Vous trouverez-ci dessous tous les dispositifs mis en en place par l'entreprise pour
-                faciliter votre vie professionnelle que votre vie privée:
+        <div class="col-md-offset-2 col-sm-offset-1 col-xs-offset-1 avantages" >
+            <legend style=" margin-top: 15px ;font-style: oblique;color: orangered;font-family: 'Century Schoolbook L';font-size: 28px">vos avantages</legend>
+            <p style="margin-bottom: 30px;margin-top: 30px;font-family: 'Bitstream Vera Sans'">
+               <strong> Vous trouverez-ci dessous tous les dispositifs
+                   mis en en place par l'entreprise </br>pour
+                   faciliter votre vie professionnelle que votre vie privée:</strong>
             </p>
+            <table class="table">
 
-            <p><span><img class="img-circle" style="width: 130px;height: 100px"
-                          src="cdejeuner.png"/></span>  cheque dejeuner </p>
+                <tbody>
+            <% if (avantages.length >0 )  { %>
+            <% avantages.forEach(function (item)  { %>
+
+                <tr style="margin-bottom: 20px">
+                 <td><%=item.libelle%></td>
+                    <td><%=item.commentaire%></td>
+                    <td ><%=item.montant%> euros</td>
+                </tr>
 
 
+                    <% }) %>
+                    <% }else { %>
+
+                    <td class="text-center"> votre bilan avantages est
+                        en cours d'edition !</td>
+
+                    <% } %>
+                </tbody>
+                <tfoot>
+                <% if(avantages.length>0) { %>
+
+                <tr>
+                    <td></td>
+                    <td>Total des avantages</td>
+                    <td class="warning"><%= avantages[0].montantAvantages %> euros</td>
+
+
+
+                </tr>
+                <%}%>
+                </tfoot>
+            </table>
             <div class="col-sm-offset-2 comments">
 
            </div>
         </div>
+        <div class="col-md-offset-2 col-sm-offset-1 col-xs-offset-1 salaire" >
+            <legend style="font-style: oblique;color: darkblue;
+            font-family: 'Century Schoolbook     L';font-size: 28px">Votre rémunerations</legend>
+
+            <table class="table remuneration">
+
+                <tbody>
+                <% if(salaireb.length>0) { %>
+                <tr>
+
+                    <td class="fixe brut">Fixe</td>
+                    <td class="brut"><%=salaireb[0].fixe%></td></tr>
+
+                <tr><td class="fixe sv">Variables</td>
+                    <td class=" sv"><%=salaireb[0].variables%></td></tr>
+                <tr><td class="fixe sav">Avantages</td>
+
+                <td class=" sav"><%=salaireb[0].avantages%></td></tr>
+
+
+                <% } %>
+
+
+                </tbody>
+                <tfoot>
+                <% if(salaireb.length>0) { %>
+                <tr>
+                    <td>Rémunération globale brute <span style=""><%=salaireb[0].fixe +
+                        salaireb[0].variables + salaireb[0].avantages %></span> </td>
+                </tr>
+                </tfoot>
+                <% } %>
+            </table>
+        </div>
+        <div class="col-md-offset-2 col-sm-offset-1 col-xs-offset-1 salaire evolution">
+            <p>Evolution de votre salaire </p>
+            <table class="table"style="">
+                <thead>
+                <% if (salaires.length >0 )  { %>
+
+                <tr>
+                    <th></th>
+                  <%i=0%>
+                    <% while( i < salaires.length){ %><th                       style="width: 100px"><%=salaires[i].annee %>
+                    </th>
+                  <%i++%>
+                    <%}%>
+
+
+                </tr>
+
+                <%}%>
+                </thead>
+                <tbody>
+
+                <% if (salaires.length >0 )  { %>
+
+                <tr>
+                    <td>variables</td>
+                    <%i=0%>
+                    <% while( i < salaires.length){ %>
+                    <td> <%=salaires[i].variables%></td>
+                    <%i++%>
+                    <%}%>
+                </tr>
+
+                <%}%>
+                <% if (salaires.length >0 )  { %>
+              <!--affiche le salaire brute-->
+                <tr>
+                    <td>Brute </td>
+                    <%i=0%>
+                    <% while( i < salaires.length){ %>
+                    <td> <%=salaires[i].salaireb%></td>
+                    <%i++%>
+                    <%}%>
+                </tr>
+
+                <%}%>
+                </tbody>
+
+            </table>
+        </div>
     </div>
 
     <!--End page-->
-    <% include templates/retour.ejs%>
+
 
     </div>
 <% include templates/footer.ejs %>

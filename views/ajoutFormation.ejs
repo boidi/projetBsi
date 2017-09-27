@@ -1,91 +1,70 @@
 <!doctype html>
-<body lang="en">
+<html lang="en">
 <% include templates/header.ejs %>
 
 <body>
 
-<% include templates/navbar.ejs %>
+<% include templates/navbaradmin.ejs %>
 
 <div class="container">
-    <!--<div class=" col-sm-4 col-sm-offset-6 flash" >
-        <% if(locals.flash && locals.flash.error){ %>
-        <div class="negative">
-            <%= flash.error %>
-        </div>
-        <% } %>
-        <% if(locals.flash && locals.flash.success){ %>
-        <div class="positive">
-            <%= flash.success %>
-        </div>
-        <% } %>
-    </div>-->
-    <section class="formation">
-        <form class="col-sm-offset-1 col-sm-8 form-horizontal " style="margin-top: 60px" method="POST"            action="/newformation" onsubmit="return verifForm(this)">
+
+    <section class="forma">
+        <form class="col-sm-offset-1 col-sm-8 form-horizontal " style="margin-top: 100px;margin-left: 20px;" method="POST" action="/newformation" onsubmit="return verifForm(this)">
             <fieldset>
 
                 <!-- Form Name -->
-                <legend style="margin-left: 200px;margin-bottom: 20px">Ajouter les formations effectuées </legend>
+                <legend style="margin-left: 40px;margin-bottom: 20px">Ajouter une nouvelle formation </legend>
 
                 <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="prenom">Ref fiche                                 salarié</label>
-                    <div class="col-md-4">
-                        <select id="salarie" name="idsalarie" style="width: 201px;height: 34px;background: white"
-                                class="form-control input-md" required=""><br>
-                            <!-- liste deroulante basée sur la requete sql affiche la liste                         des employés de la table salarié-->
-                            <% if (employes.length >0 )  { %>
-                            <% employes.forEach(function (employe)  { %>
-                            <option value="<%=employe.id%>">
 
-                                <div class="col-md-6 ident">
-                                    <%= employe.id %>
-                                    <div class="col-md-1 nom">
-                                        <%= employe.prenom %>
-                                    </div>
-                                    <div class=" col-md-2 prenom">
-                                        <%=employe.nom %>
-                                    </div>
-                                </div>
-                                <% }) %>
-                                <% }else { %>
-
-                                <p> la liste est vide</p>
-
-
-                                <% } %>
-                            </option>
-                        </select>
-                    </div>
-                </div>
+                <!--fin ref salarie-->
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="intitule">Intitulé de la                     formations</label>
+                    <label class="col-md-4 control-label" for="intitule">
+                        Intitulé de la formations</label>
                     <div class="col-md-4">
-                        <input id="intitule" name="intitule" onblur="verifChamp()"                       type="text" placeholder="intitulé formation" class="form-control input-md"                required="">
+                        <input id="intitule" name="intitule"
+                       onblur="verifChamp()"
+                   type="text" placeholder="intitulé formation"
+                               class="form-control input-md"
+                               required="">
 
                     </div>
                 </div>
 
                 <!--date-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="datedebut">Date debut                        formation</label>
+                    <label class="col-md-4
+                    control-label" for="datedebut">
+                        Date debut formation</label>
                     <div class="col-md-4">
-                        <input id="datedebut" name="datedebut" type="date"                                 placeholder="debut formation " class="form-control input-md" required="">
+                        <input id="datedebut" name="datedebut"
+                       type="date"placeholder="debutformation "                       class="form-control input-md" required="">
 
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="datefin">Date debut                             formation</label>
+                    <label class="col-md-4
+                    control-label" for="datefin">
+                        Date de fin formation</label>
                     <div class="col-md-4">
-                        <input id="datefin" name="datefin" type="date" onblur="dateCtrl()"                    placeholder="fin formation " class="form-control input-md" required="">
+                        <input id="datefin" name=
+                        "datefin" type="date"
+             onblur="dateCtrl()"placeholder="fin formation "
+                 class="form-control input-md" required="">
 
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="montant">Coût de la                            formation</label>
-                    <div class="col-md-4">
-                        <input id="montant" name="montant" type="number" placeholder="cout                          formation " class="form-control input-md" required="">
+                    <label class="col-md-4 control-label"                            for="montant">Coût de formation
+                        par salarié
+                    </label>
+
+                    <div class="col-md-4"><input id="
+                    montant" name="montant" type="number"                            placeholder="coût formation"
+                         class="form-control
+                    input-md" required="">
 
                     </div>
                 </div>
@@ -94,17 +73,18 @@
 
                 <!-- Button -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for=""></label>
+                    <label class="col-md-4
+                    control-label" for=""></label>
                     <div class="col-md-1">
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <button type="submit"
+                    class="btn btn-primary">Enregistrer</button>
                     </div>
 
-                    <!-- pour vider les input-->
-
-                    <!--<div class="form-group">-->
-                    <label class="col-md-1 control-label" for=""></label>
+                    <label class="col-md-1
+                    control-label" for=""></label>
                     <div class="col-md-1">
-                        <button type="reset" class="btn btn-primary">Annuler</button>
+                        <button type="reset"
+                         class="btn btn-primary">Annuler</button>
                     </div>
                 </div>
 
@@ -113,56 +93,38 @@
             <hr>
             <% include templates/retour.ejs%>
         </form>
-        <!--<script>
-            function surligne(champ, erreur)
-            {
-                if(erreur)
-                    champ.style.backgroundColor = "#fba";
-                else
-                    champ.style.backgroundColor = "";
-            }
-            //
-            function verifChamp(champ)
-            {
-                if(champ.value.length < 2 || champ.value.length > 100 || !isNaN(champ.value))
-                {
-                    surligne(champ, true);
-                    return false;
-                }
-                else
-                {
-                    surligne(champ, false);
-                    return true;
-                }
-            }
-            function verifcout(champ) {
-                let cout = parseInt(champ.value);
-                if(cout<0 ||isNaN(cout)||cout>10000){
-                    surligne(champ,true);
-                    return false
-                }
-                else
-                {
-                    surligne(champ, false);
-                    return true;
-                }
-            }
-            function verifForm(f) {
-                if(verifChamp(f.intitule)&&verifcout(f.montant)){
-                    alert('les données ont été bien enregistrées!');
-                    return true
-                }else {
-                    alert ('verifiez que tous les champs sont bien remplis');
-                    return false
-                }
-            }
-        </script>-->
 
     </section>
+    <div class=" col-sm-offset-1 col-md-8 col-lg-8 col-sm-8 col-sm-8 col-xs-8 tableau formations" style="margin-top: 40px">
+        <!--<hr>-->
+        <p><strong>Listes des formations </strong></p>
+        <table class="table" style="margin-top: 40px;text-align: center">
+            <thead>
+            <tr>
+                <th> intitulé  </th>
+                <th> date debut  </th>
+                <th> date fin </th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if (formations.length >0 )  { %>
+            <% formations.forEach(function (item)  { %>
+            <tr>
+                <td><%=item.intitule%></td>
+                <td><%= item.datedebut%></td>
+                <td><%=item.datefin %></td>
+            </tr>
+            <% }) %>
+            <% }else { %>
 
+            <td> la liste est vide</td>
 
-
-</div>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+    </div>
 <% include templates/footer.ejs %>
 </body>
 </html>

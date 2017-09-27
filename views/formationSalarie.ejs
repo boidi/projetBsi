@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<% include templates/header.ejs %>
+
+<div>
+<% include templates/navbaradmin.ejs %>
+
+
+<div class="container">
+    <!--<div class="row">-->
+    <div class="forma">
+        <form class=" col-sm-offset-1 col-sm-8 form-horizontal"
+              style="margin-top: 160px;margin-left: 50px" method="POST" action="/formationSalarie">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend style="margin-left: 0px;
+                margin-bottom: 20px"> Ajouter une
+                    formation au compte d'un salarié
+                </legend>
+                <div class="form-group">
+                    <label class="col-md-4
+                    control-label" for="salarie">
+                        Ref fiche salarié</label>
+                    <div class="col-md-4">
+                        <select id="salarie" name="idsalarie" style="width: 201px;height: 34px;background: white" class="form-control                              input-md" required=""><br>
+                            <% if (employes.length >0 )  { %>
+                            <% employes.forEach(function
+                                    (employe)  { %>
+                            <option value="<%=employe.id%>">
+
+                                <div class="col-md-6 ident">
+                                    <%= employe.id %>
+                                    <div class="col-md-1 nom">
+                                        <%= employe.prenom %>
+                                    </div>
+                                    <div class=" col-md-2 prenom">
+                                        <%=employe.nom %>
+                                    </div>
+                                </div>
+                                <% }) %>
+                                <% }else { %>
+                                <p> la liste est vide</p>
+                                <% } %>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <!-- reference formation-->
+
+                <div class="form-group">
+                    <label class="col-md-4
+                    control-label" for="formation">
+                        Ref formation</label>
+                    <div class="col-md-4">
+                        <select id="formation" name="formation" style="width: 201px;height: 34px;background: white"
+                                class="form-control
+                                input-md" required=""><br>
+                            <% if (formation.length >0 )  { %>
+                            <% formation.forEach(function (formation)  { %>
+                            <option value="<%=formation.id%>">
+
+                                <div class="col-md-6 ident">
+
+                                    <div class="col-md-1 nom">
+                                        <%= formation.intitule %>
+                                    </div>
+                                    <div class=" col-md-2 prenom">
+                                        du <%=formation.datedebut %>
+                                    </div>
+                                    <div class=" col-md-2 prenom">
+                                        au <%=formation.datefin %>
+                                    </div>
+                                </div>
+                                <% }) %>
+                                <% }else { %>
+                                <p> la liste est vide</p>
+                                <% } %>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for=""></label>
+                    <div class="col-md-1">
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+
+
+                    <label class="col-md-1
+                     control-label" for=""></label>
+                    <div class="col-md-1">
+                        <button type="reset" class="btn btn-primary">Annuler</button>
+                    </div>
+                </div>
+
+
+            </fieldset>
+
+
+
+        </form>
+    </div>
+   <!-- </div>-->
+
+
+
+<!--tableau des salariés ayant fait des formations et les intitulés des formations -->
+    <div class=" col-sm-offset-1 col-md-8 col-lg-8 col-sm-8 col-sm-8 col-xs-8 tableau formations" style="margin-top: 40px">
+        <!--<hr>-->
+        <p><strong>Listes des formations effectuées</strong></p>
+        <table class="table" style="margin-top: 40px;text-align: center">
+            <thead>
+            <tr>
+                <th> Nom  </th>
+                <th> Prénom  </th>
+                <th> Intitulé formation </th>
+                <th> date debut formation </th>
+                <th> date fin formation</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if (allformation.length >0 )  { %>
+            <% allformation.forEach(function (item)  { %>
+            <tr>
+                <td><%=item.nom%></td>
+                <td><%=item.prenom %></td>
+                <td><%= item.intitule %></td>
+                <td><%= item.datedebut%></td>
+                <td><%=item.datefin %></td>
+            </tr>
+            <% }) %>
+            <% }else { %>
+
+            <td> la liste est vide</td>
+
+            <% } %>
+            </tbody>
+        </table>
+
+
+</div>
+</div>
+
+<% include templates/footer.ejs %>
+</div>
+</body>
+</html>

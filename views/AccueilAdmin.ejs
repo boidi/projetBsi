@@ -1,10 +1,10 @@
 <!doctype html>
-<body lang="en">
+<html lang="en">
 <% include templates/header.ejs %>
 <body>
 <div class="row">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <div class="col-offset-3">
                     <a class="navbar-brand" href="/">
@@ -15,18 +15,19 @@
             </div>
             <ul class="nav navbar-nav pull-right">
 
-                <li><a href="/listeEmployes">tableau des adresse</a></li>
+                <li><a href="/listeEmployes">Liste des salariés</a></li>
             </ul>
         </div>
     </nav>
 </div>
 <!--menu-->
 <div class="row">
-    <div class="col-sm-3 menu">
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-3 menu">
         <div class="sidebar-nav">
             <div class="navbar navbar-default" role="navigation">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".sidebar-navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -39,24 +40,29 @@
                         <li class="active"><a href="#"></a></li>
                         <% if (salarie.length >0 )  { %>
                         <% salarie.forEach(function (salarie)  { %>
-                        <p class="ident"><strong><%= salarie.poste %></strong></p>
                         <p class="ident"><%= salarie.prenom %></p>
                         <p class="ident"><%= salarie.nom %></p>
+                        <p class="ident"><strong><%= salarie.poste %></strong></p>
 
 
                         <% }) %>
                         <% } %>
-                        <!--<li><a href="/bilanFormation" >visualiser son bilan formations</a></li>-->
-                        <li><a href="/bilan" >visualiser son bilan</a></li>
-                        <li><a href="/deconnexion"> se deconnecter</a></li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Editer un bilan  </a>
-                            <ul class="dropdown-menu">
+
+                        <li><a href="/bilan" >Visualiser son bilan</a></li>
+                        <li><a href="/deconnexion"> Se deconnecter</a></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle"                                           data-toggle="dropdown">Editer un bilan  </a>
+                            <ul class="dropdown-menu" style="text-align: justify">
                                 <!--<a href="">connection</a></li>-->
                                 <li><a href="/enregistrement">Fiche salarie</a></li>
-                                <li><a href="/formations">ajout formation</a></li>
-                                <li><a href="/remunerations">ajout des informations salariales</a></li>
-                                <li><a href="/ficheavantages"> ajout des avantages</a></li>
-                                <li><a href="#"> creation d'un bilan</a></li>
+                                <li><a href="/formations">Ajout formation</a></li>
+                                <li><a href="/remunerations">Ajout des informations                                          salariales</a></li>
+                                <li><a href="/ficheavantages">Ajouter un avantage
+                                   à un salarié</a></li>
+                                <!--<li><a href="#"> creation d'un bilan</a></li>-->
+                                <li><a href="/formationSalarie">Ajouter une
+                            formation au compte d'un salarié</a></li>
+                                <li><a href="/typeavant"> Ajout types d'avantage</a></li>
+
 
                             </ul>
                         </li>
@@ -80,46 +86,25 @@
         </div>
         <% } %>
     </div>
-    <div class="col-sm 8 news">
-        <p class="col-sm-offset-1 col-sm-4 perso" style="margin-top: 30px" >
-            bienvenue sur votre espace personnel<br>
+    <div class="col-sm-8 news">
+        <p class="col-sm-offset-1 col-sm-6 perso" style="margin-top: 30px" >
+            Bienvenue sur votre espace personnel
             Ici vous pouvez voir toutes les informations de votre bilan annuel
         </p>
-        <div class="col-sm-4">
+        <!--<div class="col-sm-4">
 
             <div class="panel panel-info">
                 <div class="panel-heading">les news des citoyens </div>
-                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim et ipsa, laborum minus nemo quibusdam? Accusamus consequatur dolor, error eum excepturi impedit nesciunt nihil numquam provident quae quidem voluptate, voluptates.
+                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim et ipsa, laborum minus nemo quibusdam? Accusamus consequatur dolor, error eum excepturi impedit nesciunt nihil numquam provident quae quidem voluptate, voluptates.-->
+
                 </div>
             </div>
-        </div>
-    </div>
-<!-- <div class ="col-sm-6 connection">
-    <h3 style="margin-top: 70px;color:red;">Authentification des utilisateurs ??</h3>
-   <form class="form-horizontal" style="margin-top:70px "  method="get" action="">
-       <legend>Se connecter</legend>
-       <fieldset>
-      <div class="form-group">
-         <label class ="col-md-3" for="login"> votre login</label>
-          <div class="col-md-4">
-        <input type="text" class="form-control input-md" id="login" placeholder="Entrez votre login" required="" >
-      </div>
-      </div>
-      <div class="form-group">
-         <label class ="col-md-3" for="motdepass">mot de pass</label>
-          <div class="col-md-4">
-         <input type="password" class="form-control input-md" id="motdepass" placeholder="entrez votre mot de pass"  required="">
-      </div>
-      </div>
-      <div class="col-md-3">
-         <button type="submit" class="btn btn-primary">Valider</button>
-      </div>
-       </fieldset>
-   </form>-->
-    <!--<a href="/enregistrement">Inscription</a><br>-->
-</div>
 
+
+
+
+<% include templates/footer.ejs %>
 </div>
 </body>
-<% include templates/footer.ejs %>
+
 </html>

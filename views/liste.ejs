@@ -1,20 +1,22 @@
 <!doctype html>
 <html lang="en">
-<% include templates/header.ejs %>
 <body>
+<% include templates/header.ejs %>
 
-<% include templates/navbar.ejs %>
+
+<% include templates/navbaradmin.ejs %>
 
 <div class="container">
+    <div class="row">
     <div class="col-sm-8 liste" style="margin-top:100px;font-size:medium">
-        <table class="col-sm-offset-1 table " style="border: 2px solid gainsboro; box-shadow: 10px 10px 5px #888888" >
+        <table class="col-sm-offset-1 table " style="border: 2px solid gainsboro" >
             <thead>
             <tr>
                 <th>
                     prenom
                 </th>
                 <th>nom</th>
-                <th>login</th>
+                <!--<th>login</th>-->
                 <th>poste</th>
                 <th>Actions</th>
             </tr>
@@ -33,18 +35,19 @@
                 <%=employe.nom %>
         </td>
 
-        <td class="warning"> <%=employe.login %> </td>
+       
             <!--</div>
             <div class=" col-md-5 prenom">-->
         <td class="active">  <%=employe.poste %> </td>
             <td width=200>
-               <!-- <a class="btn btn-default" href=""><span class="glyphicon glyphicon-eye- --><!--open"></span>Voir</a>-->
+
                 <a class="btn btn-primary" href="/modifsalarie/<%= employe.id %>">Modifier</a>
                 <form action="/deleteSalarie/<%= employe.id %>" method="post" name="modif">
 
                     <input type="hidden" name="_method" value="delete"/>
 
-                    <button type="submit" onclick="return(confirMsg())" class="btn btn-danger">Supprimer</button>
+                    <button type="submit" onclick="return(confirMsg())"
+                     class="btn btn-danger">Supprimer</button>
                 <!-- script pour delete un utilisateur-->
                 <script type="text/javascript">
                     function confirMsg() {
@@ -75,6 +78,8 @@
 
     <% include templates/retour.ejs%>
     </div>
+
+</div>
 
 <% include templates/footer.ejs %>
 </body>
